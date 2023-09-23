@@ -11,19 +11,21 @@ connectToMongo();
 const eventRoute = require('./routes/Events');
 // const userRoute = require('./routes/getUser');
 const userDetails = require('./routes/userDetails');
-// const passwordResetRoute = require('./routes/resetPassword');
-// const startRoute = require('./routes/wakingServer');
+const Attendance = require('./routes/markAttendance');
+const allEvents = require('./routes/fetchAllEvents');
+const fetchAllUserByEvent = require('./routes/fetchAllUsersByEvents');
 // const sendcertificateRoute = require('./routes/showCertificate');
-// const sportsRoute = require('./routes/selectSports');
+const userAndEvents = require('./routes/userByEvent');
 // const markAttendace = require('./routes/markAttendance')
 // const markResult = require('./routes/result');
 // Assigning the route handlers to specific paths
 app.use('/api', eventRoute);
 // app.use('/api/users', userRoute);
 app.use('/api', userDetails);
-// app.use('/api/password', passwordResetRoute);
-// app.use('/api/start', startRoute);
-// app.use('/api/sports',sportsRoute)
+app.use('/api', Attendance);
+app.use('/api', allEvents);
+app.use('/api', fetchAllUserByEvent);
+app.use('/api',userAndEvents)
 // app.use('/api', sendcertificateRoute);
 // app.use('/api/attendance', markAttendace);
 // app.use('/api/result', markResult);
