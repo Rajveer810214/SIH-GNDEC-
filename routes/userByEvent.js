@@ -3,8 +3,8 @@ const router = express.Router();
 const StudentInfo = require('../models/Student'); // Adjust the path as needed
 const CreateEvent = require('../models/CreateEvent'); // Adjust the path as needed
 
-// Define a route to get all events associated with a specific user by email
-router.post('/eventsByUser', async (req, res) => {
+// Define a route to get a user and their associated events by email
+router.post('/userAndEvents', async (req, res) => {
   try {
     const email = req.body.email;
 
@@ -15,13 +15,13 @@ router.post('/eventsByUser', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Use the user's eventIds to find all events associated with the user
+    // Find the events associated with the user based on eventIds
     const events = await CreateEvent.find({ _id: { $in: user.eventIds } });
 
-    res.status(200).json({ events });
+    res.status(200).json({ user, events });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error retrieving events by user' });
+    res.status(500).json({ message: 'Error retrieving user and events' });
   }
 });
 
