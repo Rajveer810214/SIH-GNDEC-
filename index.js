@@ -8,16 +8,17 @@ app.use(cors());
 // Connect to MongoDB
 connectToMongo();
 // Route Handlers
-const eventRoute = require('./routes/Events');
-// const userRoute = require('./routes/getUser');
-const userDetails = require('./routes/userDetails');
-const Attendance = require('./routes/markAttendance');
-const allEvents = require('./routes/fetchAllEvents');
-const fetchAllUserByEvent = require('./routes/fetchAllUsersByEvents');
-// const sendcertificateRoute = require('./routes/showCertificate');
-const userAndEvents = require('./routes/userByEvent');
-// const markAttendace = require('./routes/markAttendance')
-// const markResult = require('./routes/result');
+const eventRoute = require('./routes/UserMode/Events/Events');
+const SignUp = require('./routes/UserMode/Authentication/Auth');
+const userDetails = require('./routes/UserMode/userDetails');
+const Attendance = require('./routes/AdminMode/Attendance/markAttendance');
+const markResult = require('./routes/AdminMode/Result/MarkResult');
+const allEvents = require('./routes/AdminMode/fetchEvents/fetchAllEvents');
+const fetchAllUserByEvent = require('./routes/AdminMode/fetchEvents/fetchAllUsersByEvents');
+const verify = require('./routes/UserMode/Authentication/verify');
+const userAndEvents = require('./routes/AdminMode/fetchEvents/userByEvent');
+const passwordResetRoute = require('./routes/UserMode/password/resetPassword');
+const makeAdmin = require('./routes/AdminMode/makeAdmin');
 // Assigning the route handlers to specific paths
 app.use('/api', eventRoute);
 // app.use('/api/users', userRoute);
@@ -25,10 +26,15 @@ app.use('/api', userDetails);
 app.use('/api', Attendance);
 app.use('/api', allEvents);
 app.use('/api', fetchAllUserByEvent);
-app.use('/api',userAndEvents)
-// app.use('/api', sendcertificateRoute);
+app.use('/api', userAndEvents)
+app.use('/api', SignUp)
+app.use('/api', verify);
+app.use('/api', passwordResetRoute);
+app.use('/api', makeAdmin);
+app.use('/api', markResult);
+
+
 // app.use('/api/attendance', markAttendace);
-// app.use('/api/result', markResult);
 // Start the server
 const port = process.env.PORT;
 app.listen(port, () => {

@@ -2,13 +2,21 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const markAttendance = new mongoose.Schema({
-  checkIn: { type:String, default:"Not set"},
-  status: { type: String, required: true },
-  checkOut: { type:String, default:"Not set"},
+  status: { type: String, default: "absent" },
+  eventIds: 
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'CreateEvents', // Reference the CreateEvents model
+    },
   userIds: 
     {
       type: Schema.Types.ObjectId,
       ref: 'Students', // Reference the CreateEvents model
+    },
+    position: {
+      type: Number,
+      enum: [0, 1, 2, 3, 4],
+      default: 0,
     },
 });
 

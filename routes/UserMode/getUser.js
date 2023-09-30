@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const studentInfo = require('../models/Student');
-const fetchuser= require('../middleware/fetchUser')
+const studentInfo = require('../../models/EventStudentDetails');
+const fetchuser= require('../../middleware/fetchUser')
 router.use(express.json());
 
 router.get('/getuser', fetchuser, async (req, res) => {

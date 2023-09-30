@@ -13,7 +13,7 @@ function isAdmin(req, res, next) {
     //   console.log(decodedToken);
     console.log(decodedToken);
       // Check if the user role is "admin"
-      if (decodedToken.student.role !== 'admin') {
+      if (decodedToken.student.role !== 'Admin') {
         return res.status(403).json({ message: 'You are not authorized to access this resource' });
       }
   

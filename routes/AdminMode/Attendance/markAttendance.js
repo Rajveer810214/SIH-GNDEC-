@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const markAttendance = require('../models/Attendance'); // Adjust the path as needed
-const studentInfo = require('../models/Student');
+const markAttendance = require('../../../models/Attendance'); // Adjust the path as needed
+const StudentEventInfo = require('../../../models/EventStudentDetails');
+const isAdmin = require('../../../middleware/isAdmin');
+
 router.use(express.json());
 
-router.post('/update', async (req, res) => {
+router.post('/attendance', isAdmin, async (req, res) => {
   try {
-    const { email, checkIn, checkOut } = req.body;
+    const { email, checkIn, checkOut, eventIds } = req.body;
 
     // Find the user by email
-    const user = await studentInfo.findOne({ email });
+    const user = await StudentEventInfo.findOne({ email });
     console.log(user);
 
     if (!user) {
@@ -21,7 +23,9 @@ router.post('/update', async (req, res) => {
       checkIn,
       status: 'present', // Assuming you want to set attendance to 'present'
       checkOut,
-      userIds: user._id, // Reference the user by their ObjectId
+      userIds: user._id,
+      eventIds:eventIds
+       // Reference the user by their ObjectId
     });
 
     // Save the new attendance record to the database
