@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const EventsDetails = new mongoose.Schema({
   EventName: { type: String, required: true},
-  SocietyName: { type: String, required: true, unique: true},
+  societyId: { type: String, required: true, unique: true},
   createdAt: {
     type: Date,
     default: Date.now, // This will set the date to the current date and time when a new document is created

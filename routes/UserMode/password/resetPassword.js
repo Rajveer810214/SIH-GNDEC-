@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 // const Admin = require('../../../models/Admin');
-const studentInfo = require('../../../models/CreateAccount');
+const studentInfo = require('../../../models/CreateUserAccount');
 const { body, validationResult } = require('express-validator');
 const generateOTP = require('./generateotp');
 router.use(express.json());

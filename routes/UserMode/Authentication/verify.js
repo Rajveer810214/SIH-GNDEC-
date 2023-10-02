@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const studentInfo = require('../../../models/CreateAccount');
+const studentInfo = require('../../../models/CreateUserAccount');
 const { body, validationResult } = require('express-validator');
 const generateOTP = require('../password/generateotp');
 

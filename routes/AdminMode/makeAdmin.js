@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const isAdmin = require('../../middleware/isAdmin')
-const studentInfo = require('../../models/CreateAccount');
+const studentInfo = require('../../models/CreateUserAccount');
 router.use(express.json());
 
 router.post('/makeadmin', isAdmin, async (req, res) => {

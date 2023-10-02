@@ -11,17 +11,20 @@ connectToMongo();
 const eventRoute = require('./routes/UserMode/Events/Events');
 const SignUp = require('./routes/UserMode/Authentication/Auth');
 const userDetails = require('./routes/UserMode/userDetails');
-const Attendance = require('./routes/AdminMode/Attendance/markAttendance');
-const markResult = require('./routes/AdminMode/Result/MarkResult');
-const allEvents = require('./routes/AdminMode/fetchEvents/fetchAllEvents');
-const fetchAllUserByEvent = require('./routes/AdminMode/fetchEvents/fetchAllUsersByEvents');
+const Attendance = require('./routes/SocietyMode/Attendance/markAttendance');
+const markResult = require('./routes/SocietyMode/Result/MarkResult');
+const allEvents = require('./routes/SocietyMode/fetchEvents/fetchAllEvents');
+const fetchAllUserByEvent = require('./routes/SocietyMode/fetchEvents/fetchAllUsersByEvents');
 const verify = require('./routes/UserMode/Authentication/verify');
-const userAndEvents = require('./routes/AdminMode/fetchEvents/userByEvent');
+const userAndEvents = require('./routes/SocietyMode/fetchEvents/userByEvent');
 const passwordResetRoute = require('./routes/UserMode/password/resetPassword');
 const makeAdmin = require('./routes/AdminMode/makeAdmin');
+const getUser = require('./routes/UserMode/getUser');
+const societyEvents = require('./routes/SocietyMode/fetchEvents/fetchSocietyEvents');
+
 // Assigning the route handlers to specific paths
 app.use('/api', eventRoute);
-// app.use('/api/users', userRoute);
+app.use('/api', getUser);
 app.use('/api', userDetails);
 app.use('/api', Attendance);
 app.use('/api', allEvents);
@@ -32,8 +35,7 @@ app.use('/api', verify);
 app.use('/api', passwordResetRoute);
 app.use('/api', makeAdmin);
 app.use('/api', markResult);
-
-
+app.use('/api', societyEvents);
 // app.use('/api/attendance', markAttendace);
 // Start the server
 const port = process.env.PORT;

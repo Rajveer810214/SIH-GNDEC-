@@ -7,11 +7,11 @@ const EventsDetails = require('../../../models/CreateEvent'); // Adjust the path
 router.post('/event', async (req, res) => {
   try {
     // Extract data from the request body
-    const { EventName, SocietyName } = req.body;
+    const { EventName, id } = req.body;
     // Create a new EventsDetails document
     const newEvent = new EventsDetails({
       EventName,
-      SocietyName,
+      societyId:id,
     });
 
     // Save the new event to the database

@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const EventsDetails = require('../../../models/CreateEvent');
 const StudentEventInfo = require('../../../models/EventStudentDetails');
-const isAdmin = require('../../../middleware/isAdmin');
+const isSociety = require('../../../middleware/isSociety');
 
 // Define a route to get all users for a specific event
-router.get('/usersByEvent/:eventId', isAdmin, async (req, res) => {
+router.get('/usersByEvent/:eventId', isSociety, async (req, res) => {
   try {
     const eventId = req.params.eventId;
 

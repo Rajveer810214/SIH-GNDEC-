@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const isAdmin = require('../../../middleware/isAdmin')
+const isSociety = require('../../../middleware/isSociety')
 const EventAttendance = require('../../../models/Attendance');
-// const isSuperAdmin = require('../../../middleware/isSuperAdmin')
 const studentInfo = require('../../../models/EventStudentDetails');
 router.use(express.json());
 
-router.post('/result', isAdmin, async (req, res) => {
+router.post('/result', isSociety, async (req, res) => {
   try {
     const { eventIds, urn, position } = req.body;
     // Find the user by jersey number
