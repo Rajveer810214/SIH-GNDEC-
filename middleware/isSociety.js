@@ -9,7 +9,6 @@ const isSociety=(req,res,next)=>{
         const data=jwt.verify(token,JWT_Token);
         req.society=data.society;
         console.log(data.society);
-        console.log(req.society.id);
         next();
         
     } catch (error) {

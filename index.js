@@ -13,13 +13,17 @@ const SignUp = require('./routes/UserMode/Authentication/Auth');
 const userDetails = require('./routes/UserMode/userDetails');
 const Attendance = require('./routes/SocietyMode/Attendance/markAttendance');
 const markResult = require('./routes/SocietyMode/Result/MarkResult');
-const allEvents = require('./routes/SocietyMode/fetchEvents/fetchAllEvents');
+const allEvents = require('./routes/UserMode/Events/fetchAllEvents');
 const fetchAllUserByEvent = require('./routes/SocietyMode/fetchEvents/fetchAllUsersByEvents');
+const fetchUserParticipation = require('./routes/SocietyMode/totalUserParticipation');
+
 const verify = require('./routes/UserMode/Authentication/verify');
-const userAndEvents = require('./routes/SocietyMode/fetchEvents/userByEvent');
+const userAndEvents = require('./routes/SocietyMode/fetchEvents/userEnrollments');
 const passwordResetRoute = require('./routes/UserMode/password/resetPassword');
 const makeAdmin = require('./routes/AdminMode/makeAdmin');
 const getUser = require('./routes/UserMode/getUser');
+const myRegistration = require('./routes/UserMode/myregistration');
+
 const societyEvents = require('./routes/SocietyMode/fetchEvents/fetchSocietyEvents');
 
 // Assigning the route handlers to specific paths
@@ -36,7 +40,9 @@ app.use('/api', passwordResetRoute);
 app.use('/api', makeAdmin);
 app.use('/api', markResult);
 app.use('/api', societyEvents);
-// app.use('/api/attendance', markAttendace);
+app.use('/api', myRegistration);
+app.use('/api', fetchUserParticipation);
+
 // Start the server
 const port = process.env.PORT;
 app.listen(port, () => {
