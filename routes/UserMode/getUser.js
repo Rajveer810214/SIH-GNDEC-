@@ -24,7 +24,7 @@ router.get('/getuser', fetchuser, async (req, res) => {
         // Assuming EventStudentDetails has fields like crn and urn
         const eventDetails = await EventStudentDetails.findOne({ email: user.email });
         if (!eventDetails) {
-            return res.status(400).json({ success: false, message: "User details not found in EventStudentDetails" });
+            return res.status(200).json({ success: true, user });
         }
 
         // Now you have user details and additional details from EventStudentDetails
